@@ -1,101 +1,114 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Registration Form</title>
-        <link rel="stylesheet" href="form.css">
-        <script>
-            function validateForm(event) {
-                event.preventDefault();
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="form.css">
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
 
-                const name = document.getElementById("name").value.trim();
-                const email = document.getElementById("email").value.trim();
-                const phone = document.getElementById("phone").value.trim();
-                const address = document.getElementById("address").value.trim();
-                const department = document.getElementById("department").value;
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const department = document.getElementById("department").value;
+            const dob = document.getElementById("dob").value;
 
-                let valid = true;
+            let valid = true;
 
-                document.querySelectorAll(".error").forEach(error => error.remove());
+            document.querySelectorAll(".error").forEach(error => error.remove());
 
-                if (name === "") {
-                    showError("name", "Name is required.");
-                    valid = false;
-                }
-
-                if (email === "") {
-                    showError("email", "Email is required.");
-                    valid = false;
-                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    showError("email", "Enter a valid email address.");
-                    valid = false;
-                }
-
-                if (phone === "") {
-                    showError("phone", "Phone number is required.");
-                    valid = false;
-                } else if (!/^\d{10}$/.test(phone)) {
-                    showError("phone", "Enter a valid 10-digit phone number.");
-                    valid = false;
-                }
-
-                if (address === "") {
-                    showError("address", "Address is required.");
-                    valid = false;
-                }
-
-                if (department === "") {
-                    showError("department", "Please select a department.");
-                    valid = false;
-                }
-
-                if (valid) {
-                    alert("Form submitted successfully!");
-                    document.querySelector("form").submit();
-                }
+            if (name === "") {
+                showError("name", "Name is required.");
+                valid = false;
             }
 
-            function showError(fieldId, message) {
-                const field = document.getElementById(fieldId);
-                const error = document.createElement("div");
-                error.className = "error";
-                error.style.color = "red";
-                error.style.fontSize = "12px";
-                error.textContent = message;
-                field.parentElement.appendChild(error);
+            if (email === "") {
+                showError("email", "Email is required.");
+                valid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showError("email", "Enter a valid email address.");
+                valid = false;
             }
-        </script>
-    </head>
-    <body>
-        <div class="form-container">
-            <h2>Employee Registration Form</h2>
-            <form action="#" method="post" onsubmit="validateForm(event)">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address:</label>
-                    <textarea id="address" name="address" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="department">Department:</label>
-                    <select id="department" name="department" required>
-                        <option value="" disabled selected>Choose</option>
-                        <option value="engineering">Engineering</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="sales">Sales</option>
-                    </select>
-                </div>
-                <button type="submit" class="submit-btn">Submit</button>
-            </form>
-        </div>
-    </body>
+
+            if (phone === "") {
+                showError("phone", "Phone number is required.");
+                valid = false;
+            } else if (!/^\d{10}$/.test(phone)) {
+                showError("phone", "Enter a valid 10-digit phone number.");
+                valid = false;
+            }
+
+            if (address === "") {
+                showError("address", "Address is required.");
+                valid = false;
+            }
+
+            if (department === "") {
+                showError("department", "Please select a department.");
+                valid = false;
+            }
+
+            if (dob === "") {
+                showError("dob", "Date of Birth is required.");
+                valid = false;
+            } else if (new Date(dob) > new Date()) {
+                showError("dob", "Date of Birth cannot be in the future.");
+                valid = false;
+            }
+
+            if (valid) {
+                alert("Form submitted successfully!");
+                document.querySelector("form").submit();
+            }
+        }
+
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const error = document.createElement("div");
+            error.className = "error";
+            error.style.color = "red";
+            error.style.fontSize = "12px";
+            error.textContent = message;
+            field.parentElement.appendChild(error);
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Employee Registration Form</h2>
+        <form action="#" method="post" onsubmit="validateForm(event)">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <select id="department" name="department" required>
+                    <option value="" disabled selected>Choose</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="sales">Sales</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
 </html>
