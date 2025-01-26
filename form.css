@@ -2,7 +2,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-image: url('https://wallpapercave.com/wp/wp8478160.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: white;
 }
 
@@ -68,4 +71,5 @@ button.submit-btn:hover {
     font-size: 12px;
     margin-top: 5px;
 }
+
 
